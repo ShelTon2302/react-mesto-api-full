@@ -1,0 +1,12 @@
+@media screen and (min-width: 600px) {
+    .profile-info {
+        margin: 20px auto 25px 30px;
+    }    
+}
+
+@media screen and (max-width: 600px) {
+    .profile-info {
+        width: 100%;
+        margin: 26.25px auto 34px;
+    }
+}

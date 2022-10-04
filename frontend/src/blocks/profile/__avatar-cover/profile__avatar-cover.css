@@ -1,0 +1,24 @@
+.profile__avatar-cover {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    border-radius: 50%;
+    top: 0;
+    left: 0;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 26px 26px;
+    background: rgba(0, 0, 0, 0);
+    transition: background 1s ease-out;
+}
+
+.profile__avatar-cover:hover {
+    background: rgba(0, 0, 0, .8);
+    transition: background 1s ease-out;
+}
+
+.profile__avatar-cover:hover .profile__avatar-edit{
+    opacity: 1;
+    transition: opacity 1s ease-out;
+}
