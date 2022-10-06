@@ -7,6 +7,7 @@ export const register = (email, password) => {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     },
+    credentials: "include",
     body: JSON.stringify({email, password})
     })
     .then((response) => {
@@ -30,6 +31,7 @@ export const register = (email, password) => {
 export const login = (email, password) => {
     return fetch(`${BASE_URL}/signin`, {
       method: 'POST',
+      credentials: "include",
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
