@@ -38,6 +38,7 @@ export const login = (email, password) => {
     })
     .then((response => response.json()))
     .then((data) => {
+      console.log(data);
       if (data.token){
         localStorage.setItem('token', data.token);
         return data;
