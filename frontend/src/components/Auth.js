@@ -7,9 +7,9 @@ export const register = (email, password) => {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     },
-    credentials: "include",
-    body: JSON.stringify({email, password})
-    })
+    body: JSON.stringify({email, password}),
+    credentials: "include"
+    },)
     .then((response) => {
         console.log("response", response)
         try {
@@ -31,12 +31,12 @@ export const register = (email, password) => {
 export const login = (email, password) => {
     return fetch(`${BASE_URL}/signin`, {
       method: 'POST',
-      credentials: "include",
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({email, password})
+      body: JSON.stringify({email, password}),
+      credentials: "include"
     })
     .then((response) => {
       console.log("response", response)
@@ -59,7 +59,8 @@ export const login = (email, password) => {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`,
-      }
+      },
+      credentials: "include"
     })
     .then(res => res.json())
     .then(data => {
