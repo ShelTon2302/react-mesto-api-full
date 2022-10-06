@@ -73,22 +73,6 @@ class Api {
             .then(this._checkResponce)
     }
 
-    //setLikeCard (cardId) {
-    //    return fetch(`${this._UrlCards}/${cardId}/Likes`, {
-    //        method: 'PUT',
-    //        headers: this._headers,
-    //    })
-    //       .then(this._checkResponce)
-    //}
-
-    //removeLikeCard (cardId) {
-    //    return fetch(`${this._UrlCards}/${cardId}/Likes`, {
-    //        method: 'DELETE',
-    //        headers: this._headers,
-    //    })
-    //        .then(this._checkResponce)
-    //}
-
     changeLikeCardStatus (cardId, isLiked) {
         console.log(cardId, isLiked)
         return fetch(`${this._UrlCards}/${cardId}/Likes`, {
@@ -100,7 +84,7 @@ class Api {
 }
 
 const api = new Api ({
-    baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-44',
+    baseUrl: 'https://api.project-mesto.nomoredomains.icu',
     headers: {
         authorization: '3bce1e7f-df73-4941-a38f-482936fa7c03',
         'Content-Type': 'application/json'
