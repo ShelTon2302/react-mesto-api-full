@@ -11,7 +11,7 @@ const errorHandler = require('./middlewares/error');
 const { urlRule } = require('./const/const');
 const { login, createUser } = require('./controllers/user');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-const { cors } = require('./middlewares/cors');
+const cors = require('./middlewares/cors');
 const NotFoundError = require('./errors/not-found-error');
 
 //  Слушаем 3000 порт
