@@ -8,7 +8,8 @@ export const register = (email, password) => {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({email, password}),
-    credentials: 'include'
+    credentials: 'include',
+    mode: 'cors'
     },)
     .then((response) => {
         console.log("response", response)
@@ -36,7 +37,8 @@ export const login = (email, password) => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({email, password}),
-      credentials: 'include'
+      credentials: 'include',
+      mode: 'cors'
     })
     .then((response) => {
       console.log("response", response)
@@ -60,7 +62,8 @@ export const login = (email, password) => {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`,
       },
-      credentials: 'include'
+      credentials: 'include',
+      mode: 'cors'
     })
     .then(res => res.json())
     .then(data => {
