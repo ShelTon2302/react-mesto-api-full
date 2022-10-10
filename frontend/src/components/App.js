@@ -24,7 +24,7 @@ function App() {
   React.useEffect(() => {
     api.getCardList()
       .then((result) => {
-        setCards(result);
+        setCards(result.cards,cards);
       })
       .catch((err) => {
         console.log(`Данные карточек не загружены: ${err}`);
@@ -32,26 +32,22 @@ function App() {
   
     api.getProfileInfo()
       .then((result) => {
-        setCurrentUser(result);
+        if (result) {
+          setCurrentUser(result);
+        }
       })
       .catch((err) => {
         console.log(`Данные пользователя не загружены: ${err}`);
       });
 
-    // если у пользователя есть токен в localStorage, 
-    // эта функция проверит, действующий он или нет
-    if (localStorage.getItem('token')) {
-      const token = localStorage.getItem('token');
-      // здесь будем проверять токен
-      getContent(token)
-        .then((res) => {
-          if (res) {
-            setLoggetIn(true);
-            setLoggetEmail(res.data.email);
-            history.push('/');
-          }
-        });
-    }
+    getContent()
+      .then((res) => {
+        if (res) {
+          setLoggetIn(true);
+          setLoggetEmail(res.email);
+          history.push('/');
+        }
+      });
   },[]);
 
   function handleChangeAuthStatus(data) {
@@ -63,6 +59,10 @@ function App() {
 
   function handleChangeLoggedIn(data) {
     setLoggetIn(data);
+  }
+
+  function handleChangeLoggedEmail(data) {
+    setLoggetEmail(data);
   }
 
   function handleSetCard (data) {
@@ -99,6 +99,7 @@ function App() {
               authStatus={authStatus}
               handleChangeAuthStatus={handleChangeAuthStatus}
               handleChangeLoggedIn={handleChangeLoggedIn}
+              handleChangeLoggedEmail={handleChangeLoggedEmail}
               setLoggetIn={setLoggetIn}
               handleTooltipClick={handleTooltipClick}
               history={history}

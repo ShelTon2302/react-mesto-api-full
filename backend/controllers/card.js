@@ -5,6 +5,7 @@ const AccessError = require('../errors/access-error');
 
 module.exports.getCards = (req, res, next) => {
   Card.find({})
+    // .populate(['owner', 'likes'])
     .then((cards) => res.send({ cards }))
     .catch(next);
 };
@@ -14,7 +15,10 @@ module.exports.createCard = (req, res, next) => {
   const { name, link } = req.body; // получим из объекта запроса имя и описание пользователя
 
   Card.create({ name, link, owner }) // создадим документ на основе пришедших данных
-    .then((card) => res.send({ card }))
+    // .populate(['owner', 'likes'])
+    .then((card) => {
+      res.send({ card });
+    })
     // данные не записались, вернём ошибку
     .catch((err) => {
       if (err.name === 'ValidationError') {
@@ -61,6 +65,7 @@ module.exports.likeCard = (req, res, next) => {
     },
   )
     .orFail()
+    // .populate(['owner', 'likes'])
     .then((card) => res.send({ card }))
     // данные не записались, вернём ошибку
     .catch((err) => {
@@ -86,6 +91,7 @@ module.exports.dislikeCard = (req, res, next) => {
     },
   )
     .orFail()
+    // .populate(['owner', 'likes'])
     .then((card) => res.send({ card }))
     // данные не записались, вернём ошибку
     .catch((err) => {

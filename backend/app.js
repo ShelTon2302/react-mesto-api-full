@@ -9,7 +9,7 @@ const cardRouter = require('./routes/card');
 const userRouter = require('./routes/user');
 const errorHandler = require('./middlewares/error');
 const { urlRule } = require('./const/const');
-const { login, createUser } = require('./controllers/user');
+const { login, logout, createUser } = require('./controllers/user');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const cors = require('./middlewares/cors');
 const NotFoundError = require('./errors/not-found-error');
@@ -40,6 +40,8 @@ app.post('/signin', celebrate({
     password: Joi.string().required(),
   }),
 }), login);
+
+app.post('/signout', logout);
 
 app.post('/signup', celebrate({
   body: Joi.object().keys({

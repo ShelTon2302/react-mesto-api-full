@@ -27,7 +27,9 @@ function Login (props) {
     e.preventDefault();
     login(logEmail, logPass)
       .then ((res) => {
+        console.log(res);
         if(res){
+          props.handleChangeLoggedEmail(logEmail);
           props.handleChangeLoggedIn(true);
           props.history.push('/');
         } else {

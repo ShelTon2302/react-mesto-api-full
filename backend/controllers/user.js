@@ -52,12 +52,16 @@ module.exports.login = (req, res, next) => {
         maxAge: 3600000 * 24 * 7,
         httpOnly: true,
       })
-        .send({ token });
+        .send(user.toObject());
     })
     .catch(() => {
       throw new AuthError('Необходима авторизация');
     })
     .catch(next);
+};
+
+module.exports.logout = (req, res) => {
+  res.clearCookie('jwt').send({ messge: 'Выход пользователя' });
 };
 
 module.exports.createUser = (req, res, next) => {
@@ -69,7 +73,7 @@ module.exports.createUser = (req, res, next) => {
       about: req.body.about,
       avatar: req.body.avatar,
     })) // создадим документ на основе пришедших данных
-    .then((user) => res.send(user.toObject()))
+    .then((user) => res.status(201).send(user.toObject()))
     // данные не записались, вернём ошибку
     .catch((err) => {
       if (err.code === 11000) {

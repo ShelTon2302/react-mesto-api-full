@@ -1,7 +1,6 @@
 const { allowedCors } = require('../const/const');
 
 module.exports = (req, res, next) => {
-  console.log(req);
   const { origin } = req.headers; // Сохраняем источник запроса в переменную origin
   const { method } = req; // Сохраняем тип запроса (HTTP-метод) в соответствующую переменную
   const requestHeaders = req.headers['access-control-request-headers']; // сохраняем список заголовков исходного запроса

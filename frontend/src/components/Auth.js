@@ -1,4 +1,4 @@
-const BASE_URL = 'https://api.project-mesto.nomoredomains.icu';
+const BASE_URL = 'https://api.project-mesto.nomoredomains.icu'; //'http://localhost:3001';
 
 export const register = (email, password) => {
   return fetch(`${BASE_URL}/signup`, {
@@ -8,12 +8,11 @@ export const register = (email, password) => {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({email, password}),
-    credentials: 'include',
+    credentials: 'include'
     },)
     .then((response) => {
-        console.log("response", response)
         try {
-            if (response.status === 201){
+            if (response.status === 200){
                 return response.json();
             }
         } 
@@ -22,7 +21,7 @@ export const register = (email, password) => {
         }
     })
     .then((res) => {
-        console.log("res", res);
+        //console.log("res", res);
         return res;
     })
     .catch((err) => console.log(err));
@@ -36,33 +35,57 @@ export const login = (email, password) => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({email, password}),
-      credentials: 'include',
+      credentials: 'include'
     })
     .then((response) => {
-      console.log("response", response)
-      response.json();
+        try {
+            if (response.status === 200){
+                return response.json();
+            }
+        } 
+        catch(e) {
+            return (e)
+        }
     })
     .then((data) => {
-      console.log(data);
-      if (data.token){
-        localStorage.setItem('token', data.token);
         return data;
-      }
     })
     .catch(err => console.log(err))
   }; 
 
-  export const getContent = (token) => {
+  export const logout = () => {
+    return fetch(`${BASE_URL}/signout`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      credentials: 'include'
+    })
+    .catch(err => console.log(err))
+  }; 
+
+  export const getContent = () => {
     return fetch(`${BASE_URL}/users/me`, {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
+        // 'Authorization': `Bearer ${token}`,
       },
-      credentials: 'include',
+      credentials: 'include'
     })
-    .then(res => res.json())
+    .then(response => {
+        
+      try {
+        if (response.status === 200){
+          return response.json();
+        }
+      } 
+      catch(e) {
+        return (e)
+      }
+    })
     .then(data => {
       return data})
   } 

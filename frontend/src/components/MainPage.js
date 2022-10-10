@@ -4,6 +4,7 @@ import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import Header from "./Header";
 import Main from './Main';
 import Footer from './Footer';
+import { logout } from "./Auth";
 import EditAvatarPopup from "./EditAvatarPopup";
 import EditProfilePopup from "./EditProfilePopup";
 import AddPlacePopup from "./AddPlacePopup";
@@ -26,7 +27,7 @@ function MainPage (props) {
 
     function handleCardLike(card) {
         // Снова проверяем, есть ли уже лайк на этой карточке
-        const isLiked = card.likes.some(i => i._id === props.currentUser._id);
+        const isLiked = card.likes.some(i => i === props.currentUser._id);
         
         // Отправляем запрос в API и получаем обновлённые данные карточки
         api.changeLikeCardStatus(card._id, !isLiked)
@@ -124,20 +125,24 @@ function MainPage (props) {
         setButtonTxt('Загрузка...');
         api.addCard(data)
             .then((result) => {
-            props.setCards([result, ...props.cards]);
-            closeAllPopups();
+                props.setCards([result, ...props.cards]);
+                closeAllPopups();
             })
             .catch((err) => {
-            console.log(`Добавление карточки не выполнено: ${err}`);
+                console.log(`Добавление карточки не выполнено: ${err}`);
             })
             .finally(() => {
-            setButtonTxt('Сохранить');
+                setButtonTxt('Сохранить');
             });
     }
 
     function isExit () {
-        localStorage.removeItem('token');
+        logout()
+            .catch((err) => {
+                console.log(`Выход пользователя не выполнено: ${err}`);
+            });
         props.setLoggetIn(false);
+
     }
         
     return (
