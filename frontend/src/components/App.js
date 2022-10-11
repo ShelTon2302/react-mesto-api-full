@@ -114,6 +114,7 @@ function App() {
           loggedIn={loggedIn}
           component={MainPage}
           currentUser={currentUser}
+          history={history}
           setCurrentUser={handleSetCurrentUser}
           cards={cards}
           setCards={handleSetCard}

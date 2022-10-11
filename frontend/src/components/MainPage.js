@@ -138,11 +138,13 @@ function MainPage (props) {
 
     function isExit () {
         logout()
+            .then(() => {
+                props.setLoggetIn(false);
+                props.history.push('/sign-in');        
+            })
             .catch((err) => {
-                console.log(`Выход пользователя не выполнено: ${err}`);
+                console.log(`Выход пользователя не выполнен: ${err}`);
             });
-        props.setLoggetIn(false);
-
     }
         
     return (
