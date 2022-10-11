@@ -16,6 +16,7 @@ function App() {
   });
   const [cards, setCards] = React.useState([]);
   const [authStatus, setAuthStatus] = React.useState({});
+  const [loginUser, setLoginUser] = React.useState({});
   const [loggedIn, setLoggetIn] = React.useState(false);
   const [loggedEmail, setLoggetEmail] = React.useState('')
   const history = useHistory();
@@ -48,13 +49,17 @@ function App() {
           history.push('/');
         }
       });
-  },[loggedIn]);
+  },[loginUser]);
 
   function handleChangeAuthStatus(data) {
     setAuthStatus({
       msg: data.msg,
       error: data.error
     });
+  }
+
+  function handleChangeLogginUser(data) {
+    setLoginUser({});
   }
 
   function handleChangeLoggedIn(data) {
@@ -98,6 +103,7 @@ function App() {
             <Login 
               authStatus={authStatus}
               handleChangeAuthStatus={handleChangeAuthStatus}
+              handleChangeLogginUser={handleChangeLogginUser}
               handleChangeLoggedIn={handleChangeLoggedIn}
               handleChangeLoggedEmail={handleChangeLoggedEmail}
               handleSetCurrentUser={handleSetCurrentUser}

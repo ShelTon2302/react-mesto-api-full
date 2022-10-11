@@ -30,11 +30,7 @@ function Login (props) {
         console.log(res);
         if(res){
           props.handleChangeLoggedEmail(logEmail);
-          props.handleSetCurrentUser({
-            about: res.about,
-            name: res.name,
-            avatar: res.avatar
-          })
+          props.handleChangeLogginUser();
           props.handleChangeLoggedIn(true);
           props.history.push('/');
         } else {
