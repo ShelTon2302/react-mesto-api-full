@@ -54,7 +54,7 @@ export const login = (email, password) => {
 
   export const logout = () => {
     return fetch(`${BASE_URL}/signout`, {
-      method: 'POST',
+      method: 'GET',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
