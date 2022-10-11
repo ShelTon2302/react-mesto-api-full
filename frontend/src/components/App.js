@@ -100,6 +100,7 @@ function App() {
               handleChangeAuthStatus={handleChangeAuthStatus}
               handleChangeLoggedIn={handleChangeLoggedIn}
               handleChangeLoggedEmail={handleChangeLoggedEmail}
+              handleSetCurrentUser={handleSetCurrentUser}
               setLoggetIn={setLoggetIn}
               handleTooltipClick={handleTooltipClick}
               history={history}
