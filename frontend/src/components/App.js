@@ -48,7 +48,7 @@ function App() {
           history.push('/');
         }
       });
-  },[]);
+  },[loggedIn]);
 
   function handleChangeAuthStatus(data) {
     setAuthStatus({
