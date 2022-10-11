@@ -41,8 +41,6 @@ app.post('/signin', celebrate({
   }),
 }), login);
 
-app.post('/signout', logout);
-
 app.post('/signup', celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().email(),
@@ -54,6 +52,8 @@ app.post('/signup', celebrate({
 }), createUser);
 
 app.use(auth);
+
+app.post('/signout', logout);
 
 app.use('/', userRouter, (req, res, next) => {
   next();

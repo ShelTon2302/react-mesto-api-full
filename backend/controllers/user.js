@@ -60,8 +60,10 @@ module.exports.login = (req, res, next) => {
     .catch(next);
 };
 
-module.exports.logout = (req, res) => {
-  res.clearCookie('jwt').send({ messge: 'Выход пользователя' });
+module.exports.logout = (req, res, next) => {
+  User.findById(req.user._id)
+    .then(() => res.clearCookie('jwt').send({ messge: 'Выход пользователя' }))
+    .catch(next);
 };
 
 module.exports.createUser = (req, res, next) => {
