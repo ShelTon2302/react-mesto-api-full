@@ -19,6 +19,7 @@ class Api {
 
     getProfileInfo () {
         return fetch(this._UrlProfile, {
+            mode: 'cors',
             headers: this._headers,
             credentials: 'include'
         })
@@ -28,6 +29,7 @@ class Api {
     setProfileInfo ({name, about}) {
         return fetch(this._UrlProfile, {
             method: 'PATCH',
+            mode: 'cors',
             headers: this._headers,
             body: JSON.stringify({
                 name,
@@ -41,6 +43,7 @@ class Api {
     changeAvatar (avatar) {
         return fetch(this._UrlAvatar, {
             method: 'PATCH',
+            mode: 'cors',
             headers: this._headers,
             body: JSON.stringify({
                 avatar
@@ -53,6 +56,7 @@ class Api {
     getCardList () {
         return fetch(this._UrlCards, {
         headers: this._headers,
+        mode: 'cors',
         credentials: 'include'
         })
             .then(this._checkResponce)
@@ -61,6 +65,7 @@ class Api {
     addCard (Data) {
         return fetch(this._UrlCards, {
             method: 'POST',
+            mode: 'cors',
             headers: this._headers,
             body: JSON.stringify({
                 name: Data.name,
@@ -75,6 +80,7 @@ class Api {
     deleteCard (cardId) {
         return fetch(`${this._UrlCards}/${cardId}`, {
             method: 'DELETE',
+            mode: 'cors',
             headers: this._headers,
             credentials: 'include'
         })
@@ -84,6 +90,7 @@ class Api {
     changeLikeCardStatus (cardId, isLiked) {
         return fetch(`${this._UrlCards}/${cardId}/Likes`, {
             method: isLiked ? 'PUT' : 'DELETE',
+            mode: 'cors',
             headers: this._headers,
             credentials: 'include'
         })

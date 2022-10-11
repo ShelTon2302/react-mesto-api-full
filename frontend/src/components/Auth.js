@@ -3,6 +3,7 @@ const BASE_URL = 'https://api.project-mesto.nomoredomains.icu';
 export const register = (email, password) => {
   return fetch(`${BASE_URL}/signup`, {
     method: 'POST',
+    mode: 'cors',
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
@@ -29,6 +30,7 @@ export const register = (email, password) => {
 export const login = (email, password) => {
     return fetch(`${BASE_URL}/signin`, {
       method: 'POST',
+      mode: 'cors',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -54,7 +56,8 @@ export const login = (email, password) => {
 
   export const logout = () => {
     return fetch(`${BASE_URL}/signout`, {
-      method: 'GET',
+      method: 'POST',
+      mode: 'cors',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -67,6 +70,7 @@ export const login = (email, password) => {
   export const getContent = () => {
     return fetch(`${BASE_URL}/users/me`, {
       method: 'GET',
+      mode: 'cors',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
