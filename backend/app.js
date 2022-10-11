@@ -53,7 +53,7 @@ app.post('/signup', celebrate({
 
 app.use(auth);
 
-app.get('/signout', logout);
+app.post('/signout', logout);
 
 app.use('/', userRouter, (req, res, next) => {
   next();
