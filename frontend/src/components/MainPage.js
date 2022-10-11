@@ -140,6 +140,8 @@ function MainPage (props) {
         logout()
             .then(() => {
                 props.setLoggetIn(false);
+            })
+            .then(() => {
                 props.history.push('/sign-in');        
             })
             .catch((err) => {

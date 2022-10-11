@@ -64,7 +64,6 @@ export const login = (email, password) => {
       },
       credentials: 'include'
     })
-    .catch(err => console.log(err))
   }; 
 
   export const getContent = () => {
