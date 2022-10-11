@@ -1,4 +1,4 @@
-const { allowedCors } = require('../const/const');
+const allowedCors = require('../const/const');
 
 module.exports = (req, res, next) => {
   const { origin } = req.headers; // Сохраняем источник запроса в переменную origin
