@@ -9,7 +9,6 @@ class Api {
     _checkResponce(res) {
         try {
             if (res.status === 200){
-              console.log(res);
                 return res.json();
             }
         } 
@@ -83,7 +82,6 @@ class Api {
     }
 
     changeLikeCardStatus (cardId, isLiked) {
-        console.log(cardId, isLiked)
         return fetch(`${this._UrlCards}/${cardId}/Likes`, {
             method: isLiked ? 'PUT' : 'DELETE',
             headers: this._headers,
@@ -94,9 +92,8 @@ class Api {
 }
 
 const api = new Api ({
-    baseUrl: 'https://api.project-mesto.nomoredomains.icu', // 'http://localhost:3001'
+    baseUrl: 'https://api.project-mesto.nomoredomains.icu',
     headers: {
-        // authorization: '3bce1e7f-df73-4941-a38f-482936fa7c03',
         'Content-Type': 'application/json'
         }
     });

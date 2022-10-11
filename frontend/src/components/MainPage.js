@@ -32,7 +32,7 @@ function MainPage (props) {
         // Отправляем запрос в API и получаем обновлённые данные карточки
         api.changeLikeCardStatus(card._id, !isLiked)
           .then((newCard) => {
-            props.setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
+            props.setCards((state) => state.map((c) => c._id === card._id ? newCard.card : c));
           })
           .catch((err) => {
             console.log(`Изменение статуса карточки не выполнено: ${err}`);
@@ -125,7 +125,7 @@ function MainPage (props) {
         setButtonTxt('Загрузка...');
         api.addCard(data)
             .then((result) => {
-                props.setCards([result, ...props.cards]);
+                props.setCards([result.card, ...props.cards]);
                 closeAllPopups();
             })
             .catch((err) => {

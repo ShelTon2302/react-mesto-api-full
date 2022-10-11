@@ -1,4 +1,4 @@
-const BASE_URL = 'https://api.project-mesto.nomoredomains.icu'; //'http://localhost:3001';
+const BASE_URL = 'https://api.project-mesto.nomoredomains.icu';
 
 export const register = (email, password) => {
   return fetch(`${BASE_URL}/signup`, {
@@ -12,7 +12,7 @@ export const register = (email, password) => {
     },)
     .then((response) => {
         try {
-            if (response.status === 200){
+            if (response.status === 201){
                 return response.json();
             }
         } 
@@ -21,7 +21,6 @@ export const register = (email, password) => {
         }
     })
     .then((res) => {
-        //console.log("res", res);
         return res;
     })
     .catch((err) => console.log(err));
@@ -71,7 +70,6 @@ export const login = (email, password) => {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        // 'Authorization': `Bearer ${token}`,
       },
       credentials: 'include'
     })

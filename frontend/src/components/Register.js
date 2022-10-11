@@ -28,17 +28,17 @@ function Register (props) {
           .then ((res) => {
             if(res){
                 props.handleChangeAuthStatus({
-                msg: 'Вы успешно зарегистрировались!',
-                error: false
-              });
-              props.handleTooltipClick();
-              props.history.push('/sign-in');
+                    msg: 'Вы успешно зарегистрировались!',
+                    error: false
+                });
+                props.handleTooltipClick();
+                props.history.push('/sign-in');
             } else {
                 props.handleChangeAuthStatus({
-                msg: 'Что-то пошло не так! Попробуйте ещё раз.',
-                error: true
-              });
-              props.handleTooltipClick();
+                    msg: 'Что-то пошло не так! Попробуйте ещё раз.',
+                    error: true
+                });
+                props.handleTooltipClick();
             }
           })
           .finally(clearRegInputs());
