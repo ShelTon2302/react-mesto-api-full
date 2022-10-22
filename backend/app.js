@@ -14,8 +14,8 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 const cors = require('./middlewares/cors');
 const NotFoundError = require('./errors/not-found-error');
 
-//  Слушаем 3000 порт
-const { PORT = 3000 } = process.env;
+//  Слушаем 3015 порт
+const { PORT = 3015 } = process.env;
 
 const app = express();
 
@@ -33,13 +33,6 @@ app.use(express.json());
 app.use(cors);
 
 app.use(requestLogger); // подключаем логгер запросов
-
-// удалить после ревью!!!
-app.get('/crash-test', () => {
-  setTimeout(() => {
-    throw new Error('Сервер сейчас упадёт');
-  }, 0);
-});
 
 app.post('/signin', celebrate({
   body: Joi.object().keys({

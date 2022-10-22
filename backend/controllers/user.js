@@ -66,7 +66,6 @@ module.exports.login = (req, res, next) => {
 };
 
 module.exports.logout = (req, res, next) => {
-  console.log(req);
   User.findById(req.user._id)
     .then(() => res.clearCookie('jwt').send({ messge: 'Выход пользователя' }))
     .catch(next);
